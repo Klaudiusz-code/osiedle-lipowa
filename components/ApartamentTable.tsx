@@ -3,8 +3,8 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { apartmentsData } from "@/app/data/apartaments"; 
-import { Apartment, Status } from "@/app/types/aparament"; 
+import { apartmentsData } from "@/app/data/apartaments";
+import { Apartment, Status } from "@/app/types/aparament";
 import {
   FiDownload,
   FiEye,
@@ -13,7 +13,6 @@ import {
   FiLayers,
   FiX,
 } from "react-icons/fi";
-
 
 const FILTER_CONFIG = [
   {
@@ -125,9 +124,9 @@ export default function ApartmentTable() {
   return (
     <div
       id="offer"
-      className="w-full max-w-[1600px] mx-auto space-y-10 px-4 md:px-0"
+      className="w-full max-w-[1600px] mx-auto space-y-0 md:space-y-10 px-0 md:px-6"
     >
-      <div className="relative w-full h-[350px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl group ring-1 ring-slate-900/5">
+      <div className="relative w-full h-[350px] md:h-[500px] rounded-none md:rounded-3xl overflow-hidden shadow-2xl group ring-1 ring-slate-900/5">
         <Image
           src="/table.jpg"
           alt="Wizualizacja Osiedla Lipowa"
@@ -150,8 +149,8 @@ export default function ApartmentTable() {
         </div>
       </div>
 
-      <div className="bg-white/80 backdrop-blur-md p-6 md:p-8 rounded-3xl shadow-xl border border-white/50 ring-1 ring-slate-200">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+      <div className="bg-white/90 backdrop-blur-md py-6 px-3 md:py-8 md:px-8 shadow-xl border-x-0 md:border-x border-slate-200">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-8 gap-4">
           <div>
             <h4 className="text-xl font-bold text-slate-800 flex items-center gap-3">
               <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
@@ -159,35 +158,35 @@ export default function ApartmentTable() {
               </div>
               Wyszukiwarka Mieszkań
             </h4>
-            <p className="text-slate-500 text-sm mt-1 ml-11">
+            <p className="text-slate-500 text-sm mt-1 ml-11 hidden md:block">
               Dostosuj kryteria, aby znaleźć idealny lokal.
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="bg-slate-50 px-4 py-2 rounded-xl border border-slate-200 whitespace-nowrap">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2">
+          <div className="flex items-center gap-3 md:gap-4 w-full md:w-auto justify-end">
+            <div className="bg-slate-50 px-3 py-2 rounded-xl border border-slate-200 whitespace-nowrap">
+              <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider mr-1 md:mr-2">
                 Wyniki:
               </span>
-              <span className="text-lg font-bold text-emerald-600">
+              <span className="text-base md:text-lg font-bold text-emerald-600">
                 {filteredApartments.length}
               </span>
             </div>
 
             <button
               onClick={() => setIsPlanOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white text-sm font-bold rounded-xl hover:bg-emerald-600 transition-colors shadow-lg shadow-slate-200 whitespace-nowrap"
+              className="flex items-center gap-2 px-3 md:px-4 py-2 bg-slate-900 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-emerald-600 transition-colors shadow-lg shadow-slate-200 whitespace-nowrap"
             >
-              <FiMapPin className="text-lg" />
+              <FiMapPin className="text-base md:text-lg" />
               Plan osiedla
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6 items-end">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-6 items-end">
           {FILTER_CONFIG.map((field) => (
             <div key={field.id} className="flex flex-col gap-2">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+              <label className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
                 {field.id === "building" && (
                   <FiMapPin className="w-3.5 h-3.5" />
                 )}
@@ -199,7 +198,7 @@ export default function ApartmentTable() {
                   name={field.id}
                   value={filters[field.id as keyof typeof filters]}
                   onChange={handleFilterChange}
-                  className="w-full p-3.5 pl-4 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all hover:border-emerald-300 cursor-pointer appearance-none shadow-sm text-sm md:text-base"
+                  className="w-full p-3 md:p-4 pl-4 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all hover:border-emerald-300 cursor-pointer appearance-none shadow-sm text-xs md:text-sm md:text-base"
                 >
                   <option value="">{field.placeholder}</option>
                   {field.options.map((opt) => (
@@ -229,7 +228,7 @@ export default function ApartmentTable() {
 
           <div className="flex flex-col gap-3 h-full justify-end pb-1">
             <div className="flex justify-between items-center">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+              <label className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
                 <svg
                   className="w-3.5 h-3.5"
                   fill="none"
@@ -243,9 +242,9 @@ export default function ApartmentTable() {
                     d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
                   />
                 </svg>
-                Max Powierzchnia
+                Max Pow.
               </label>
-              <span className="text-sm font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100 whitespace-nowrap">
+              <span className="text-xs md:text-sm font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100 whitespace-nowrap">
                 {filters.maxArea} m²
               </span>
             </div>
@@ -261,36 +260,36 @@ export default function ApartmentTable() {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl border border-slate-100 overflow-hidden ring-1 ring-slate-900/5">
+      <div className="bg-white rounded-none md:rounded-3xl shadow-xl border-x-0 md:border-x border-slate-100 overflow-hidden ring-1 ring-slate-900/5">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[800px] text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase tracking-wider">
-                <th className="p-4 md:p-6 font-semibold whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold whitespace-nowrap">
                   Budynek
                 </th>
-                <th className="p-4 md:p-6 font-semibold whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold whitespace-nowrap">
                   Piętro
                 </th>
-                <th className="p-4 md:p-6 font-semibold whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold whitespace-nowrap">
                   Lokal
                 </th>
-                <th className="p-4 md:p-6 font-semibold whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold whitespace-nowrap">
                   Powierzchnia
                 </th>
-                <th className="p-4 md:p-6 font-semibold whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold whitespace-nowrap">
                   Układ
                 </th>
-                <th className="p-4 md:p-6 font-semibold text-right whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold text-right whitespace-nowrap">
                   Cena m²
                 </th>
-                <th className="p-4 md:p-6 font-semibold text-right whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold text-right whitespace-nowrap">
                   Cena
                 </th>
-                <th className="p-4 md:p-6 font-semibold text-center whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold text-center whitespace-nowrap">
                   Status
                 </th>
-                <th className="p-4 md:p-6 font-semibold text-center whitespace-nowrap">
+                <th className="px-3 py-3 md:p-6 font-semibold text-center whitespace-nowrap">
                   Szczegóły
                 </th>
               </tr>
@@ -302,36 +301,36 @@ export default function ApartmentTable() {
                     key={apt.id}
                     className="hover:bg-slate-50 transition-colors group"
                   >
-                    <td className="p-4 md:p-6 font-bold text-slate-700">
+                    <td className="px-3 py-3 md:p-6 font-bold text-slate-700">
                       {apt.building}
                     </td>
-                    <td className="p-4 md:p-6 text-slate-600">
+                    <td className="px-3 py-3 md:p-6 text-slate-600 whitespace-nowrap">
                       {apt.floor === 0 ? "Parter" : apt.floor}
                     </td>
-                    <td className="p-4 md:p-6">
+                    <td className="px-3 py-3 md:p-6">
                       <span className="font-bold text-slate-900 bg-slate-100 px-2 py-1 rounded-md text-xs md:text-sm">
                         {apt.number}
                       </span>
                     </td>
-                    <td className="p-4 md:p-6 text-slate-600 font-medium">
+                    <td className="px-3 py-3 md:p-6 text-slate-600 font-medium whitespace-nowrap">
                       {apt.area} m²
                     </td>
-                    <td className="p-4 md:p-6 text-slate-500 text-xs uppercase tracking-wide font-semibold">
+                    <td className="px-3 py-3 md:p-6 text-slate-500 text-xs uppercase tracking-wide font-semibold">
                       {apt.layout}
                     </td>
 
-                    <td className="p-4 md:p-6 text-right text-slate-500 whitespace-nowrap">
+                    <td className="px-3 py-3 md:p-6 text-right text-slate-500 whitespace-nowrap text-xs">
                       {apt.priceM2.toLocaleString("pl-PL")} zł
                     </td>
 
-                    <td className="p-4 md:p-6 text-right font-bold text-emerald-700 text-base whitespace-nowrap">
+                    <td className="px-3 py-3 md:p-6 text-right font-bold text-emerald-700 text-sm md:text-base whitespace-nowrap">
                       {Math.round(apt.area * apt.priceM2).toLocaleString(
                         "pl-PL",
                       )}{" "}
                       zł
                     </td>
 
-                    <td className="p-4 md:p-6 text-center">
+                    <td className="px-3 py-3 md:p-6 text-center">
                       <span
                         className={`inline-block px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wide ${getStatusBadge(apt.status)}`}
                       >
@@ -339,7 +338,7 @@ export default function ApartmentTable() {
                       </span>
                     </td>
 
-                    <td className="p-4 md:p-6 text-center">
+                    <td className="px-3 py-3 md:p-6 text-center">
                       <div className="flex items-center justify-center gap-2">
                         <button
                           className="p-2 md:p-2.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-emerald-500 hover:text-white transition-all shadow-sm hover:shadow-md"
@@ -388,11 +387,11 @@ export default function ApartmentTable() {
       {isPlanOpen && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-slate-900/90 backdrop-blur-sm animate-in fade-in duration-200"
-          onClick={() => setIsPlanOpen(false)} 
+          onClick={() => setIsPlanOpen(false)}
         >
           <div
             className="relative w-full max-w-6xl max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between p-4 border-b border-slate-100 bg-slate-50">
               <div className="flex items-center gap-2">

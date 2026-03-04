@@ -52,7 +52,7 @@ export default function Hero() {
             zaprojektowana z myślą o Twoim spokoju i wygodzie.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 md:mb-0">
             <a
               href="#offer"
               className="inline-flex justify-center items-center px-7 py-3.5 bg-emerald-500 text-white rounded-lg font-bold text-base shadow-lg shadow-emerald-900/40 hover:bg-emerald-400 hover:-translate-y-0.5 transition-all duration-300"
@@ -82,13 +82,11 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Dekoracyjne światło po prawej stronie */}
         <div className="hidden lg:block h-full pointer-events-none">
           <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] -z-10"></div>
         </div>
       </div>
 
-      {/* Strzałka scrollowania */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 z-10 hidden sm:block animate-bounce">
         <svg
           className="w-5 h-5"

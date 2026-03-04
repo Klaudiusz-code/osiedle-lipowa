@@ -57,7 +57,7 @@ export default function Apartment1BPage() {
     <main
       className={`min-h-screen bg-slate-50 text-slate-800 ${inter.variable} font-sans selection:bg-emerald-100 selection:text-emerald-800`}
     >
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/60 transition-all duration-300">
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/60 transition-all duration-300 shadow-sm">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between max-w-7xl">
           <Link
             href="/#offer"
@@ -83,10 +83,10 @@ export default function Apartment1BPage() {
         </div>
       </nav>
 
-      <div className="container mx-auto px-6 py-10 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-8 flex flex-col gap-6">
-            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-xl group">
+      <div className="container mx-auto px-6 py-8 md:py-10 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="lg:col-span-8 flex flex-col gap-4 md:gap-6">
+            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl group">
               <Image
                 src="/table.jpg"
                 alt={`Wizualizacja mieszkania ${apartment.number}`}
@@ -94,22 +94,24 @@ export default function Apartment1BPage() {
                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 priority
               />
-              <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-900/40 to-transparent pointer-events-none"></div>
+
+              <div className="absolute bottom-0 left-0 w-full p-6 md:p-8">
                 <div className="flex justify-between items-end">
                   <div className="space-y-2">
                     <h2
-                      className={`text-3xl md:text-4xl text-white font-bold ${playfair.variable}`}
+                      className={`text-3xl md:text-5xl text-white font-bold leading-tight ${playfair.variable}`}
                     >
                       Mieszkanie{" "}
                       <span className="text-emerald-400">
                         {apartment.number}
                       </span>
                     </h2>
-                    <div className="flex items-center gap-3 text-slate-300 text-sm font-medium">
-                      <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3 text-slate-200 text-xs md:text-sm font-medium">
+                      <span className="flex items-center gap-1.5 bg-black/30 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/10">
                         <FaRegBuilding /> Budynek {apartment.building}
                       </span>
-                      <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10">
+                      <span className="flex items-center gap-1.5 bg-black/30 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/10">
                         <BsGrid3X3GapFill />{" "}
                         {apartment.floor === 0
                           ? "Parter"
@@ -121,25 +123,26 @@ export default function Apartment1BPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="relative aspect-video rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-emerald-500 transition-colors opacity-80 hover:opacity-100"
+                  className="relative aspect-video rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-emerald-500 transition-all shadow-md group"
                 >
                   <Image
                     src="/table.jpg"
                     alt={`Miniatura ${i}`}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-80 group-hover:opacity-60 transition-opacity pointer-events-none"></div>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white p-7 rounded-3xl shadow-lg shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
+            <div className="bg-white p-6 md:p-7 rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -z-10 translate-x-10 -translate-y-10"></div>
 
               <div className="flex justify-between items-start mb-6">
@@ -148,19 +151,19 @@ export default function Apartment1BPage() {
                     Cena brutto
                   </p>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-bold text-emerald-700 tracking-tight">
+                    <span className="text-3xl md:text-4xl font-bold text-emerald-700 tracking-tight">
                       {totalPrice}
                     </span>
-                    <span className="text-lg font-semibold text-slate-500">
+                    <span className="text-base md:text-lg font-semibold text-slate-500">
                       zł
                     </span>
                   </div>
-                  <p className="text-sm text-slate-400 mt-1">
+                  <p className="text-xs md:text-sm text-slate-400 mt-1">
                     {apartment.area} m² × {apartment.priceM2} zł/m²
                   </p>
                 </div>
                 <div
-                  className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border shadow-sm ${statusStyles}`}
+                  className={`px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider border shadow-sm ${statusStyles}`}
                 >
                   {statusText}
                 </div>
@@ -189,19 +192,26 @@ export default function Apartment1BPage() {
                 />
               </div>
 
-              <div className="pt-6 flex flex-col gap-3">
-                <button className="w-full py-4 bg-emerald-600 text-white rounded-2xl font-bold text-sm hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200 active:scale-[0.98] flex items-center justify-center gap-2">
-                  <FaPhoneAlt className="text-sm" />
+              <div className="pt-6 flex flex-col gap-3 w-full">
+                <a
+                  href="tel:+48123456789"
+                  className="w-full py-4 bg-emerald-600 text-white rounded-2xl font-bold text-sm md:text-base hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200 active:scale-[0.98] flex items-center justify-center gap-3 group"
+                >
+                  <FaPhoneAlt className="text-base md:text-lg group-hover:animate-pulse" />
                   Zadzwoń do doradcy
-                </button>
-                <button className="w-full py-4 bg-slate-50 text-slate-700 border border-slate-200 rounded-2xl font-bold text-sm hover:bg-slate-100 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
-                  <FiMail className="text-lg" />
+                </a>
+
+                <a
+                  href="mailto:biuro@osiedlelipowa.pl?subject=Zapytanie o mieszkanie 1B&body=Dzień dobry, interesuje mnie mieszkanie numer 1B."
+                  className="w-full py-4 bg-slate-50 text-slate-700 border border-slate-200 rounded-2xl font-bold text-sm md:text-base hover:bg-slate-100 hover:border-slate-300 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                >
+                  <FiMail className="text-lg md:text-xl" />
                   Wyślij zapytanie
-                </button>
+                </a>
               </div>
             </div>
 
-            <div className="bg-slate-900 p-6 rounded-3xl text-white flex items-center justify-between shadow-xl hover:shadow-2xl transition-all cursor-pointer group">
+            <div className="bg-slate-900 p-5 md:p-6 rounded-3xl text-white flex items-center justify-between shadow-xl hover:shadow-2xl hover:bg-slate-800 transition-all cursor-pointer group">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center group-hover:bg-emerald-600 transition-colors">
                   <FiDownload className="text-xl" />

@@ -11,42 +11,44 @@ export default function Location() {
   return (
     <section
       id="localization"
-      className="bg-white py-24 relative overflow-hidden"
+      className="bg-slate-50 py-16 md:py-24 relative overflow-hidden"
     >
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="max-w-3xl mx-auto text-center mb-10 md:mb-16">
+          <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider mb-4">
             Doskonała komunikacja
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Lokalizacja w sercu Tomaszowa Lubelskiego
+          <h2 className="font-heading text-xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
+            Lokalizacja w sercu <br className="md:hidden" />Tomaszowa Lubelskiego
           </h2>
-          <p className="text-lg text-slate-600 leading-relaxed">
+          <p className="text-sm md:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
             Ul. Lipowa to miejsce, gdzie spokój spotyka się z wygodą. Wszystko,
             czego potrzebujesz do życia codziennego, masz w zasięgu ręki.
           </p>
         </div>
 
-        <div className="relative w-full h-[450px] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 mb-16 group">
-          <div className="absolute inset-0 bg-slate-100 animate-pulse z-0" />
-          <iframe
-            title="Mapa Osiedla Lipowa"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=23.3500%2C50.0000%2C23.4500%2C50.0500&layer=mapnik&marker=50.0250%2C23.4000"
-            className="relative z-10 w-full h-full border-0 grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
-            allowFullScreen
-            loading="lazy"
-          ></iframe>
+        <div className="relative w-full h-[300px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 mb-12 md:mb-20 group">
+          <div className="absolute inset-0 z-0 bg-slate-900">
+            <iframe
+              title="Mapa Osiedla Lipowa"
+              src="https://maps.google.com/maps?q=ul.+Lipowa+12,+Tomasz%C3%B3w+Lubelski&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              className="w-full h-full border-0 opacity-90 grayscale-[100%] invert-[92%] contrast-[83%]"
+              allowFullScreen
+              loading="lazy"
+            ></iframe>
+          </div>
 
-          <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg border border-slate-100 z-20 max-w-xs">
-            <div className="flex items-start gap-3">
-              <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
+          {/* Ozdobna karta z adresem */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-8 md:bottom-8 w-[90%] md:w-auto bg-white/95 backdrop-blur-md p-4 md:p-5 rounded-2xl shadow-2xl border border-white/50 z-20">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-slate-900 text-white rounded-xl shrink-0 shadow-lg">
                 <FaMapMarkerAlt className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-bold text-slate-900 text-sm">
+                <h4 className="font-bold text-slate-900 text-base">
                   Osiedle Lipowa
                 </h4>
-                <p className="text-slate-500 text-xs mt-1">
+                <p className="text-slate-500 text-sm mt-0.5">
                   ul. Lipowa 12, 22-600 Tomaszów Lubelski
                 </p>
               </div>
@@ -54,7 +56,7 @@ export default function Location() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="flex md:grid md:grid-cols-4 gap-4 overflow-x-auto md:overflow-visible pb-8 md:pb-0 mb-12 md:mb-16 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
           {[
             {
               icon: FaSchool,
@@ -87,12 +89,12 @@ export default function Location() {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="group p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-default"
+              className="min-w-[260px] md:min-w-0 snap-center group p-6 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-default"
             >
               <div
-                className={`w-12 h-12 rounded-xl ${item.bg} ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                className={`w-14 h-14 rounded-2xl ${item.bg} ${item.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 shadow-sm`}
               >
-                <item.icon className="text-2xl" />
+                <item.icon className="text-2xl md:text-3xl" />
               </div>
               <h3 className="font-bold text-lg text-slate-900 mb-2">
                 {item.title}
@@ -104,11 +106,12 @@ export default function Location() {
           ))}
         </div>
 
-        <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-100">
-          <h3 className="font-heading text-2xl font-bold text-slate-900 mb-8 text-center">
+        {/* Lista w najbliższym otoczeniu */}
+        <div className="bg-white rounded-3xl p-6 md:p-10 border border-slate-100 shadow-sm">
+          <h3 className="font-heading text-xl md:text-2xl font-bold text-slate-900 mb-8 text-center">
             W najbliższym otoczeniu
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-16 gap-y-4">
             {[
               { name: "Szkoła Podstawowa nr 1", dist: "400 m" },
               { name: "Przychodnia Zdrowia", dist: "650 m" },
@@ -119,10 +122,12 @@ export default function Location() {
             ].map((place, i) => (
               <div
                 key={i}
-                className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-100"
+                className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-emerald-50/50 transition-colors"
               >
-                <span className="font-medium text-slate-700">{place.name}</span>
-                <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
+                <span className="font-medium text-slate-700 text-sm md:text-base">
+                  {place.name}
+                </span>
+                <span className="text-xs md:text-sm font-bold text-emerald-600 bg-emerald-100 px-3 py-1.5 rounded-lg">
                   {place.dist}
                 </span>
               </div>

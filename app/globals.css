@@ -1,7 +1,19 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+  /* To jest kluczowe - przesuwa punkt kotwicy o 100px w dół */
+  scroll-padding-top: 100px; 
+}
 
+/* Dla mobile, gdzie pasek może być niższy, możesz dostosować */
+@media (max-width: 1024px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+}
 body {
+  box-sizing: border-box;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;

@@ -13,7 +13,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[65vh] md:min-h-[70vh] lg:min-h-[75vh] w-full overflow-hidden flex items-center bg-slate-900">
+    <section className="relative min-h-[65vh] md:min-h-[70vh] lg:min-h-[75vh] w-full overflow-hidden flex items-start pt-32 md:pt-40 bg-slate-900">
       <div className="absolute inset-0 z-0">
         <Image
           src={imgSrc}
@@ -21,15 +21,18 @@ export default function Hero() {
           fill
           className="object-cover"
           priority
-          quality={85} 
+          quality={85}
           onError={handleImageError}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/40 to-transparent" />
+
+        {/* Gradienty do poprawy czytelności tekstu */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/85 to-slate-900/20 md:from-slate-900/90 md:via-slate-900/40 md:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div className="text-white max-w-xl lg:max-w-2xl animate-in fade-in slide-in-from-bottom-6 duration-1000 fill-mode-forwards">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-[10px] md:text-xs font-bold tracking-widest uppercase text-emerald-400 bg-slate-900/40 border border-emerald-500/30 rounded-full backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-[10px] md:text-xs font-bold tracking-widest uppercase text-emerald-400 bg-slate-900/60 border border-emerald-500/30 rounded-full backdrop-blur-md shadow-lg">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -44,7 +47,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="text-base md:text-lg text-slate-200 mb-8 font-light leading-relaxed max-w-lg opacity-90">
+          <p className="text-base md:text-lg text-slate-200 mb-8 font-light leading-relaxed max-w-lg opacity-90 drop-shadow-md">
             Komfortowe mieszkania w sercu Tomaszowa Lubelskiego. Przestrzeń
             zaprojektowana z myślą o Twoim spokoju i wygodzie.
           </p>
@@ -79,11 +82,13 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* Dekoracyjne światło po prawej stronie */}
         <div className="hidden lg:block h-full pointer-events-none">
           <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] -z-10"></div>
         </div>
       </div>
 
+      {/* Strzałka scrollowania */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 z-10 hidden sm:block animate-bounce">
         <svg
           className="w-5 h-5"

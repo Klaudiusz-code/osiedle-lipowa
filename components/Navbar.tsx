@@ -13,12 +13,31 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleScroll = (e: any, targetId: any) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      const offset = 80; // Wysokość paska nawigacji + margines
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled || mobileMenuOpen
           ? "bg-white/95 backdrop-blur-md shadow-md py-3 border-b border-slate-100"
-          : "bg-transparent py-6 border-b border-white/10" 
+          : "bg-transparent py-6 border-b border-white/10"
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -52,36 +71,36 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
-          {" "}
           {[
-            "O Inwestycji",
-            "Oferta",
-            "Galeria",
-            "Lokalizacja",
-            "Warunki zakupu",
+            { label: "O Inwestycji", id: "o-inwestycji" },
+            { label: "Oferta", id: "offer" },
+            { label: "Galeria", id: "gallery" },
+            { label: "Lokalizacja", id: "localization" },
+            { label: "Warunki zakupu", id: "warunki-zakupu" },
           ].map((item) => (
-            <Link
-              key={item}
-              href={`#${item.toLowerCase().replace(" ", "-")}`}
-              className={`text-sm font-semibold tracking-wide transition-colors relative group py-2 ${
+            <button
+              key={item.label}
+              onClick={(e) => handleScroll(e, item.id)}
+              className={`text-sm font-semibold tracking-wide transition-colors relative group py-2 bg-transparent border-none cursor-pointer ${
                 scrolled || mobileMenuOpen
                   ? "text-slate-600 hover:text-emerald-600"
                   : "text-white/90 hover:text-white"
               }`}
             >
-              {item}
+              {item.label}
               <span
                 className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full ${
                   scrolled ? "bg-emerald-600" : "bg-white"
                 }`}
               ></span>
-            </Link>
+            </button>
           ))}
         </nav>
 
         <div className="hidden lg:block">
           <a
             href="#contact"
+            onClick={(e) => handleScroll(e, "contact")}
             className={`text-sm font-bold px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg transform hover:-translate-y-0.5 ${
               scrolled || mobileMenuOpen
                 ? "bg-emerald-600 text-white hover:bg-emerald-700"
@@ -125,45 +144,25 @@ export default function Navbar() {
 
       {mobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-2xl py-4 px-6 flex flex-col gap-1 animate-in slide-in-from-top-2">
-          <Link
-            href="#o-inwestycji"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-slate-700 font-medium py-3 px-2 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-50 last:border-0"
-          >
-            O Inwestycji
-          </Link>
-          <Link
-            href="#offer"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-slate-700 font-medium py-3 px-2 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-50 last:border-0"
-          >
-            Oferta
-          </Link>
-          <Link
-            href="#gallery"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-slate-700 font-medium py-3 px-2 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-50 last:border-0"
-          >
-            Galeria
-          </Link>
-          <Link
-            href="#localization"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-slate-700 font-medium py-3 px-2 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-50 last:border-0"
-          >
-            Lokalizacja
-          </Link>
-          <Link
-            href="#warunki-zakupu"
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-slate-700 font-medium py-3 px-2 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-50 last:border-0"
-          >
-            Warunki zakupu
-          </Link>
+          {[
+            { label: "O Inwestycji", id: "o-inwestycji" },
+            { label: "Oferta", id: "offer" },
+            { label: "Galeria", id: "gallery" },
+            { label: "Lokalizacja", id: "localization" },
+            { label: "Warunki zakupu", id: "warunki-zakupu" },
+          ].map((item) => (
+            <button
+              key={item.label}
+              onClick={(e) => handleScroll(e, item.id)}
+              className="text-left text-slate-700 font-medium py-3 px-2 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-50 last:border-0 bg-transparent border-none w-full text-base"
+            >
+              {item.label}
+            </button>
+          ))}
           <div className="pt-4 mt-2">
             <a
               href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => handleScroll(e, "contact")}
               className="block w-full text-center bg-emerald-600 text-white py-3.5 rounded-xl font-bold shadow-lg shadow-emerald-500/30"
             >
               Skontaktuj się

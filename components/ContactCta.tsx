@@ -10,13 +10,10 @@ import {
 export default function ContactCTA() {
   return (
     <section className="relative py-12 md:py-16 bg-slate-50 overflow-hidden font-sans border-t border-slate-100">
-      {/* Delikatne tło - mniejsze i mniej inwazyjne */}
       <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-teal-50 rounded-full blur-[100px] opacity-70 -translate-y-1/2 translate-x-1/4"></div>
 
-      {/* Szeroki kontener, ale zwarty w pionie */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
-          {/* LEWA: Zwarty tekst */}
           <div className="lg:w-[45%] text-center lg:text-left space-y-5">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-[10px] font-bold uppercase tracking-widest">
               <FaMapMarkerAlt className="text-[10px]" />
@@ -33,7 +30,6 @@ export default function ContactCTA() {
               pokażemy standard wykończenia w mieszkaniu pokazowym.
             </p>
 
-            {/* Adres w wersji minimalistycznej (bez dużego boxa) */}
             <div className="pt-2">
               <div className="flex flex-col items-center lg:items-start gap-1 text-slate-700">
                 <div className="flex items-center gap-2 font-medium">
@@ -69,7 +65,6 @@ export default function ContactCTA() {
               </div>
             </a>
 
-            {/* Karta 2: Telefon (Teal) */}
             <a
               href="tel:+48000000000"
               className="group flex flex-col justify-between p-6 bg-slate-900 rounded-2xl shadow-sm border border-slate-800 hover:bg-slate-800 transition-all duration-300 text-white"
@@ -85,7 +80,7 @@ export default function ContactCTA() {
                   Zadzwoń do nas
                 </h3>
                 <p className="text-slate-400 text-sm mb-3">Infolinia czynna</p>
-                <span className="text-lg font-bold text-teal-400">
+                <span className="text-lg font-bold text-emerald-400">
                   +48 000 000 000
                 </span>
               </div>
